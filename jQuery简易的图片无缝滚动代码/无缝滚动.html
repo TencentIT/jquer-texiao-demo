@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery无缝滚动</title>
+    <style lang="css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        
+        .one {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid red;
+            height: 160px;
+            overflow: hidden;
+        }
+        
+        .one ul li {
+            float: left;
+            height: 160px;
+            position: relative;
+            /* box-sizing: border-box; */
+            margin: 5px;
+        }
+        
+        .one ul li a {
+            display: inline-block;
+            position: relative;
+            height: 150px;
+        }
+        
+        .one ul li img {
+            height: 150px;
+            border-radius: 5px;
+        }
+        
+        .one ul li span {
+            position: absolute;
+            bottom: 0px;
+            color: #fff;
+            height: 0px;
+            font-size: 0;
+            background: rgb(0, 0, 0, .5);
+            display: inline-block;
+        }
+        
+        .one ul li a:hover span {
+            /* width: 240px; */
+            height: 150px;
+            line-height: 150px;
+            font-size: 20px;
+            text-align: center;
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="one">
+        <ul>
+            <li>
+                <a href=""><img src="images/a1.png" alt=""> <span>hi~hi！我们是单身汪</span></a>
+            </li>
+            <li>
+                <a href=""><img src="images/a2.png" alt=""> <span>hi~hi！我们是单身汪</span></a>
+            </li>
+            <li>
+                <a href=""><img src="images/a3.png" alt=""> <span>hi~hi！我们是单身汪</span></a>
+            </li>
+            <li>
+                <a href=""><img src="images/a4.png" alt=""> <span>hi~hi！我们是单身汪</span></a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var box0 = $(".one");
+        var v0 = 1.5;
+        Rin(box0, v0)
+
+        function Rin($Box, v) {
+            var $Box_ul = $Box.find("ul"),
+                $Box_li = $Box_ul.find("li"),
+                $Box_span = $Box_li.find("span");
+
+            $($Box_li).each(function(index) {
+                $($Box_span[index]).width($(this).width());
+            })
+
+        }
+    })
+</script>
+
+</html>
